@@ -27,7 +27,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
     student.setFees(fees);
     student.setName(name);
     student.setPassword(password);
-    student.setPhone(address);
+    student.setPhone(phone);
 	
     StudentDao studentDao=new StudentDao();
     studentDao.saveStudent(student);

@@ -13,7 +13,7 @@ public class Student {
 	private int id;
 	private String name;
 	private String address;
-	private String phone;
+	private long phone;
 	private String email;
 	private String password;
 	private double fees;
@@ -35,10 +35,11 @@ public class Student {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getPhone() {
+	
+	public long getPhone() {
 		return phone;
 	}
-	public void setPhone(String phone) {
+	public void setPhone(long phone) {
 		this.phone = phone;
 	}
 	public String getEmail() {

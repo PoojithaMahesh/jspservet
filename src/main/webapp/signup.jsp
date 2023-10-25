@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>Welcome to StudentManagementSystem</h1>
 <form action="signup" method="post">
 Name::<input type="text" name="name">
 <br>

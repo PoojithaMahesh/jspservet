@@ -10,13 +10,10 @@
 <%String message=(String)request.getAttribute("message"); %>
 
 <%if(message!=null){ %>
-<%=message %>
+<h1><%=message %></h1>
 <%}else{ %>
-<%="Welcome to LOGIN PAGE" %>
+<h1><%="Welcome to LOGIN PAGE" %></h1>
 <%} %>
-
-
-
 <form action="login">
 
 Email::<input type="text" name="email">

@@ -37,9 +37,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 //		email is present
 		if(password.equals(passwordofTheStudent)) {
 //			login success
-			PrintWriter printWriter=resp.getWriter();
-			printWriter.print("Yes Logged in Successfully get lost");
-			
+			req.setAttribute("list",studentDao.getAllStudents());
+			RequestDispatcher dispatcher=req.getRequestDispatcher("display.jsp");
+			dispatcher.forward(req, resp);
 		}else {
 			req.setAttribute("message", "Invalid Password");
 			RequestDispatcher dispatcher=req.getRequestDispatcher("login.jsp");
