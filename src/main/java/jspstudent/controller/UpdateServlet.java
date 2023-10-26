@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +38,16 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
     
     StudentDao dao=new StudentDao();
     dao.updateStudent(student);
-	
+    
+    
+   Cookie[] cookies= req.getCookies();
+   String nameoftheStudentWhoChangedTheDetails=null;
+	for(Cookie cookie:cookies) {
+		if(cookie.getName().equals("studentWhoLoggedIn")) {
+			nameoftheStudentWhoChangedTheDetails=cookie.getValue();
+		}
+	}
+	req.setAttribute("nameofthestudent", nameoftheStudentWhoChangedTheDetails);
     req.setAttribute("list", dao.getAllStudents());
 	RequestDispatcher dispatcher=req.getRequestDispatcher("display.jsp");
 	dispatcher.forward(req, resp);

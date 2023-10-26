@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import jspstudent.dao.StudentDao;
 import jspstudent.dto.Student;
@@ -21,8 +22,23 @@ public class EditServlet extends HttpServlet {
 		StudentDao studentDao=new StudentDao();
 		Student  student=studentDao.getStudentById(id);
 		req.setAttribute("student", student);
-		RequestDispatcher dispatcher=req.getRequestDispatcher("edit.jsp");
-		dispatcher.forward(req, resp);
+		
+		HttpSession httpSession=req.getSession();
+		String name=(String) httpSession.getAttribute("studentWhologgedIn");
+		
+		if(name!=null) {
+//			he is coming from the login page only not directly coming to this edit.jsp page
+			RequestDispatcher dispatcher=req.getRequestDispatcher("edit.jsp");
+			dispatcher.forward(req, resp);
+		}else {
+//			name is equals to null means that particular student is a scammer
+//			they are coming dirctly to this login page
+			req.setAttribute("message", "Hey Scammer Login first and then come to edit");
+			RequestDispatcher dispatcher=req.getRequestDispatcher("login.jsp");
+			dispatcher.forward(req, resp);
+		}
+		
+		
 		
 		
 		
